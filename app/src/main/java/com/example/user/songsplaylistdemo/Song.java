@@ -5,6 +5,7 @@ package com.example.user.songsplaylistdemo;
  */
 
 public class Song {
+    private int id;
     private String songName;
     private String artistName;
     private String lyrics;
@@ -31,5 +32,13 @@ public class Song {
 
     public void setLyrics(String lyrics) {
         this.lyrics = lyrics;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

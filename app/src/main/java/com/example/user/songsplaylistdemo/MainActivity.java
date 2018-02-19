@@ -2,6 +2,7 @@ package com.example.user.songsplaylistdemo;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        this.loadDataToDB();
+        //this.loadDataToDB();
         this.initializeSongsFromDB();
 
 
@@ -38,8 +39,11 @@ public class MainActivity extends AppCompatActivity {
         this.songsAdapter = new SongsAdapter(this,songs);
         recyclerView.setAdapter(songsAdapter);
         this.recyclerView.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         this.recyclerView.setLayoutManager(linearLayoutManager);
+        //GridLayoutManager gridVertical = new GridLayoutManager(this,2, GridLayoutManager.VERTICAL,false);
+
+        //recyclerView.setLayoutManager(gridVertical);
 
 
 
@@ -2641,10 +2645,10 @@ public class MainActivity extends AppCompatActivity {
 
         songs.add(song74);
 
-        Song song = new Song();
-        song.setArtistName("জাগরনের গান");
-        song.setSongName("তীরহারা এই ঢেউয়ের");
-        song.setLyrics("তীরহারা এই ঢেউয়ের\n" +
+        Song song75 = new Song();
+        song75.setArtistName("জাগরনের গান");
+        song75.setSongName("তীরহারা এই ঢেউয়ের");
+        song75.setLyrics("তীরহারা এই ঢেউয়ের\n" +
                 "সাগর পাড়ি দেবো রে\n" +
                 "আমরা কজন নবীন মাঝি\n" +
                 "হাল ধরেছি শক্ত করে রে\n" +
@@ -2681,12 +2685,12 @@ public class MainActivity extends AppCompatActivity {
                 "তীরহারা এই ঢেউয়ের\n" +
                 "সাগর পাড়ি দিব রে");
 
-        songs.add(song);
+        songs.add(song75);
 
-        Song song = new Song();
-        song.setArtistName("ফজলুর রহমান বাবু");
-        song.setSongName("নিথুয়া পাথারে");
-        song.setLyrics("নিথুয়া পাথারে নেমেছি বন্ধুরে\n" +
+        Song song76 = new Song();
+        song76.setArtistName("ফজলুর রহমান বাবু");
+        song76.setSongName("নিথুয়া পাথারে");
+        song76.setLyrics("নিথুয়া পাথারে নেমেছি বন্ধুরে\n" +
                 "ধর বন্ধু আমার কেহ নাই\n" +
                 "তোল বন্ধু আমার কেহ নাই।।\n" +
                 "\n" +
@@ -2703,12 +2707,12 @@ public class MainActivity extends AppCompatActivity {
                 "ধর বন্ধু আমার কেহ নাই\n" +
                 "তোল বন্ধু আমার কেহ নাই।।");
 
-        songs.add(song);
+        songs.add(song76);
 
-        Song song = new Song();
-        song.setArtistName("মিনার");
-        song.setSongName("ঝুম");
-        song.setLyrics("তুমি আমায় ডেকেছিলে\n" +
+        Song song77 = new Song();
+        song77.setArtistName("মিনার");
+        song77.setSongName("ঝুম");
+        song77.setLyrics("তুমি আমায় ডেকেছিলে\n" +
                 "এক মেঘে ঢাকা দিনে\n" +
                 "কেনো আমি দেইনি সাড়া\n" +
                 "আমার চোখে আকাশ দেখে\n" +
@@ -2748,12 +2752,12 @@ public class MainActivity extends AppCompatActivity {
                 "ঝুম, উড়ে ঘুরে তারে ডাকি\n" +
                 "ঝুম, উড়ি ঘুরে তারেই খুজি");
 
-        songs.add(song);
+        songs.add(song77);
 
-        Song song = new Song();
-        song.setArtistName("আইয়ুব বাচ্চু");
-        song.setSongName("এক আকাশের তারা");
-        song.setLyrics("এক আকাশের তারা তুই একা গুনিস নে\n" +
+        Song song78 = new Song();
+        song78.setArtistName("আইয়ুব বাচ্চু");
+        song78.setSongName("এক আকাশের তারা");
+        song78.setLyrics("এক আকাশের তারা তুই একা গুনিস নে\n" +
                 "গুনতে দিস তুই কিছু মোরে\n" +
                 "ওরে সব ভালো তুই একা বাসিস নে\n" +
                 "একটু ভালোবাসতে দিস মোরে\n" +
@@ -2777,12 +2781,12 @@ public class MainActivity extends AppCompatActivity {
                 "ওরে সব ভালো তুই একা বাসিস নে\n" +
                 "একটু ভালোবাসতে দিস মোরে");
 
-        songs.add(song);
+        songs.add(song78);
 
-        Song song = new Song();
-        song.setArtistName("হাসান");
-        song.setSongName("এতো কষ্ট কেনো ভালোবাসায়");
-        song.setLyrics("চারিদিকে উৎসব\n" +
+        Song song79 = new Song();
+        song79.setArtistName("হাসান");
+        song79.setSongName("এতো কষ্ট কেনো ভালোবাসায়");
+        song79.setLyrics("চারিদিকে উৎসব\n" +
                 "পরিপুর্ণ নিয়ন আলোয়..\n" +
                 "আমার এ পৃথিবী\n" +
                 "ঘিরে আসছে আঁধার কালোয়..\n" +
@@ -2805,12 +2809,12 @@ public class MainActivity extends AppCompatActivity {
                 "ভাবতেই জলে চোখ ভিজে যায়..\n" +
                 "এত কষ্ট কেনো ভালোবাসায়.. \n");
 
-        songs.add(song);
+        songs.add(song79);
 
-        Song song = new Song();
-        song.setArtistName("খালিদ");
-        song.setSongName("সরলতার প্রতিমা");
-        song.setLyrics("তুমি আকাশের বুকে বিশালতার উপমা\n" +
+        Song song80 = new Song();
+        song80.setArtistName("খালিদ");
+        song80.setSongName("সরলতার প্রতিমা");
+        song80.setLyrics("তুমি আকাশের বুকে বিশালতার উপমা\n" +
                 "তুমি আমার চোখতে সরলতার প্রতিমা\n" +
                 "আমি তোমাকে গড়ি ভেঙ্গে চুড়ে শতবার\n" +
                 "রয়েছো তুমি বহুদুরে আমাকে রেখে ছলনায়\n" +
@@ -2832,12 +2836,12 @@ public class MainActivity extends AppCompatActivity {
                 "লাগে না লাগে না জোড়া\n" +
                 "লাগে না লাগে না জোড়া।।");
 
-        songs.add(song);
+        songs.add(song80);
 
-        Song song = new Song();
-        song.setArtistName("খালিদ");
-        song.setSongName("যদি হিমালয় হয়ে দুঃখ আসে");
-        song.setLyrics("যদি হিমালয় হয়ে দুঃখ আসে\n" +
+        Song song81 = new Song();
+        song81.setArtistName("খালিদ");
+        song81.setSongName("যদি হিমালয় হয়ে দুঃখ আসে");
+        song81.setLyrics("যদি হিমালয় হয়ে দুঃখ আসে\n" +
                 "এ হৃদয়ে সে কিছু নয়\n" +
                 "শত আঘাতেও নিঃস্ব যে আজ\n" +
                 "তার আবার, হারানোর ভয়\n" +
@@ -2858,12 +2862,12 @@ public class MainActivity extends AppCompatActivity {
                 "বেহাগের সুরে সুখ গিয়ে দূরে আনে অশুভ বারতা\n" +
                 "কি ভুলে আমি এত… কেউ তা।।");
 
-        songs.add(song);
+        songs.add(song81);
 
-        Song song = new Song();
-        song.setArtistName("বারী সিদ্দিকী");
-        song.setSongName("আমার গায়ে যত দুঃখ");
-        song.setLyrics("আমার গায়ে যত দুঃখ সয়\n" +
+        Song song82 = new Song();
+        song82.setArtistName("বারী সিদ্দিকী");
+        song82.setSongName("আমার গায়ে যত দুঃখ");
+        song82.setLyrics("আমার গায়ে যত দুঃখ সয়\n" +
                 "বন্ধুয়ারে করো তুমার মনে যাহা লয়\n" +
                 "বন্ধুয়ারে করো তুমার মনে যাহা লয় …….\n" +
                 "\n" +
@@ -2904,12 +2908,12 @@ public class MainActivity extends AppCompatActivity {
                 "\n" +
                 "বন্ধুয়ারে করো তুমার মনে যাহা লয়");
 
-        songs.add(song);
+        songs.add(song82);
 
-        Song song = new Song();
-        song.setArtistName("জলের গান");
-        song.setSongName("বকুল ফুল");
-        song.setLyrics("বকুল ফুল বকুল ফুল \n" +
+        Song song83 = new Song();
+        song83.setArtistName("জলের গান");
+        song83.setSongName("বকুল ফুল");
+        song83.setLyrics("বকুল ফুল বকুল ফুল \n" +
                 "সোনা দিয়া হাত কানও বান্ধাইলি। \n" +
                 "শালুক ফুলের লাজ নাই \n" +
                 "রাইতে শালুক ফুটে। \n" +
@@ -2930,12 +2934,12 @@ public class MainActivity extends AppCompatActivity {
                 "বকুল ফুল বকুল ফুল \n" +
                 "সোনা দিয়া হাত কানও বান্ধাইলি। ");
 
-        songs.add(song);
+        songs.add(song83);
 
-        Song song = new Song();
-        song.setArtistName("জলের গান");
-        song.setSongName("এমন যদি হতো");
-        song.setLyrics("এমন যদি হতো\n" +
+        Song song84 = new Song();
+        song84.setArtistName("জলের গান");
+        song84.setSongName("এমন যদি হতো");
+        song84.setLyrics("এমন যদি হতো\n" +
                 "আমি পাখির মতো উড়ে উড়ে বেড়াই সারাক্ষন\n" +
                 "পালাই বহুদুরে ... ক্লান্ত ভবঘুরে\n" +
                 "ফিরবো ঘরে; কোথায় এমন ঘর ।\n" +
@@ -2958,12 +2962,12 @@ public class MainActivity extends AppCompatActivity {
                 "ঘুম আসে না,\n" +
                 "ঘুমও স্বার্থপর !");
 
-        songs.add(song);
+        songs.add(song84);
 
-        Song song = new Song();
-        song.setArtistName("জলের গান");
-        song.setSongName("আমি একটা পাতার ছবি");
-        song.setLyrics("আমি একটা পাতার ছবি আঁকি\n" +
+        Song song85 = new Song();
+        song85.setArtistName("জলের গান");
+        song85.setSongName("আমি একটা পাতার ছবি");
+        song85.setLyrics("আমি একটা পাতার ছবি আঁকি\n" +
                 "পাতাটা গাছ হয়ে যায়।\n" +
                 "মাথা ভরা সবুজ কচি পাতা\n" +
                 "গাছটাকে ছাতা মনে হয়।\n" +
@@ -2981,12 +2985,12 @@ public class MainActivity extends AppCompatActivity {
                 "হতভম্ব আর্টস্টম্যান কিছুই জানেনা...\n" +
                 "হতভম্ব আর্টিস্টম্যান আঁকতে পারেনা...");
 
-        songs.add(song);
+        songs.add(song85);
 
-        Song song = new Song();
-        song.setArtistName("জলের গান");
-        song.setSongName("ও ঝরা পাতা");
-        song.setLyrics("ও ঝরা পাতা ও ঝরা পাতাগো \n" +
+        Song song86 = new Song();
+        song86.setArtistName("জলের গান");
+        song86.setSongName("ও ঝরা পাতা");
+        song86.setLyrics("ও ঝরা পাতা ও ঝরা পাতাগো \n" +
                 "তোমার সাথে আমার রাত পোহানো কথাগো \n" +
                 "তোমার সাথে আমার দিন কাটানো কথা \n" +
                 "\n" +
@@ -3012,12 +3016,12 @@ public class MainActivity extends AppCompatActivity {
                 "আমার বসত অন্ধকারে \n" +
                 "তোরা থাকিস ভালো।");
 
-        songs.add(song);
+        songs.add(song86);
 
-        Song song = new Song();
-        song.setArtistName("বাংলা ব্যান্ড");
-        song.setSongName("সোনা দিয়া বান্ধাইয়াছি ঘর");
-        song.setLyrics("সোনা দিয়া বান্ধাইয়াছি ঘর\n" +
+        Song song87 = new Song();
+        song87.setArtistName("বাংলা ব্যান্ড");
+        song87.setSongName("সোনা দিয়া বান্ধাইয়াছি ঘর");
+        song87.setLyrics("সোনা দিয়া বান্ধাইয়াছি ঘর\n" +
                 "ও মন রে ঘুণে করলো জড়ো জড়\n" +
                 "আমি কি করে বাস করিব এই ঘরে রে\n" +
                 "তুই সে আমার মন\n" +
@@ -3036,12 +3040,12 @@ public class MainActivity extends AppCompatActivity {
                 "মন তোরে পারলাম না বুঝাইতে রে\n" +
                 "তুই সে আমার মন");
 
-        songs.add(song);
+        songs.add(song87);
 
-        Song song = new Song();
-        song.setArtistName("আইয়ুব বাচ্চু");
-        song.setSongName("সে তারা ভরা রাতে");
-        song.setLyrics("সে তারা ভরা রাতে\n" +
+        Song song88 = new Song();
+        song88.setArtistName("আইয়ুব বাচ্চু");
+        song88.setSongName("সে তারা ভরা রাতে");
+        song88.setLyrics("সে তারা ভরা রাতে\n" +
                 "আমি পারিনি বোঝাতে\n" +
                 "তোমাকে আমার মনের ব্যাথা\n" +
                 "তুমিতো বলেছ শুধু\n" +
@@ -3061,12 +3065,12 @@ public class MainActivity extends AppCompatActivity {
                 "আজও হলোনা বলা\n" +
                 "আমার না বলা কথা");
 
-        songs.add(song);
+        songs.add(song88);
 
-        Song song = new Song();
-        song.setArtistName("আইয়ুব বাচ্চু");
-        song.setSongName("আমি কষ্ট পেতে ভালোবাসি");
-        song.setLyrics("কোনো সুখের ছোঁয়া পেতে নয়\n" +
+        Song song89 = new Song();
+        song89.setArtistName("আইয়ুব বাচ্চু");
+        song89.setSongName("আমি কষ্ট পেতে ভালোবাসি");
+        song89.setLyrics("কোনো সুখের ছোঁয়া পেতে নয়\n" +
                 "নয় কোনো নতুন জীবনের খোঁজে\n" +
                 "তোমার চোখে তাকিয়ে থাকা\n" +
                 "আলোকিত হাসি নয়\n" +
@@ -3087,12 +3091,12 @@ public class MainActivity extends AppCompatActivity {
                 "আমার আকাশ জুড়ে কালো\n" +
                 "মেঘে ভরে গেছে ভুলে");
 
-        songs.add(song);
+        songs.add(song89);
 
-        Song song = new Song();
-        song.setArtistName("আইয়ুব বাচ্চু");
-        song.setSongName("সেই তুমি কেন এতো অচেনা");
-        song.setLyrics("সেই তুমি কেন এতো অচেনা হলে\n" +
+        Song song90 = new Song();
+        song90.setArtistName("আইয়ুব বাচ্চু");
+        song90.setSongName("সেই তুমি কেন এতো অচেনা");
+        song90.setLyrics("সেই তুমি কেন এতো অচেনা হলে\n" +
                 "সেই আমি কেন তোমাকে দুঃখ দিলেম\n" +
                 "কেমন করে এতো অচেনা হলে তুমি\n" +
                 "কিভাবে এতো বদলে গেছি এই আমি\n" +
@@ -3114,12 +3118,12 @@ public class MainActivity extends AppCompatActivity {
                 "ফেলে আসা সেই সব দিনগুলি\n" +
                 "ভুলে যেতে আমি পারিনা");
 
-        songs.add(song);
+        songs.add(song90);
 
-        Song song = new Song();
-        song.setArtistName("আইয়ুব বাচ্চু");
-        song.setSongName("ফেরারী এই মনটা আমার");
-        song.setLyrics("ফেরারী এই মনটা আমার\n" +
+        Song song91 = new Song();
+        song91.setArtistName("আইয়ুব বাচ্চু");
+        song91.setSongName("ফেরারী এই মনটা আমার");
+        song91.setLyrics("ফেরারী এই মনটা আমার\n" +
                 "মানে না কোনো বাঁধা\n" +
                 "তোমাকে পাবারই আশায়\n" +
                 "ফিরে আসে বারেবার\n" +
@@ -3136,7 +3140,53 @@ public class MainActivity extends AppCompatActivity {
                 "অপবাদ দিয়ে যেও না\n" +
                 "তাই আমি ফিরে আছি বারেবার");
 
-        songs.add(song);
+        songs.add(song91);
+
+        Song song92 = new Song();
+        song92.setArtistName("অর্ণব");
+        song92.setSongName("সে যে বসে আছে");
+        song92.setLyrics("সে যে বসে আছে একা একা\n" +
+                "রঙিন স্বপ্ন তার বুনতে\n" +
+                "সে যে চেয়ে আছে ভরা চোখে\n" +
+                "জানালার ফাঁকে মেঘ ধরতে ।।\n" +
+                "\n" +
+                "তার গুন গুন মনের গান বাতাসে উড়ে\n" +
+                "কান পাত মনে পাবে শুনতে\n" +
+                "তার রঙের তুলির নাচে মেঘেরা ছুটে\n" +
+                "চোখ মেল যদি পার বুঝতে ।।\n" +
+                "\n" +
+                "সে যে বসে আছে একা একা\n" +
+                "তার স্বপ্নের কারখানা চলেছে\n" +
+                "আর বুড়ো বুড়ো মেঘেদের দল বৃষ্টি নামার তাল গুনছে ।।\n" +
+                "\n" +
+                "সেই গুন গুন মনের গান বৃষ্টি নামায়\n" +
+                "টপ টপ টপ ফোটা পড়ে অনেক ক্ষণ\n" +
+                "সেই বৃষ্টি ভেজা মনে ডাক দিয়েছে\n" +
+                "ভেজা কাক হয়ে থাক আমার মন ।।");
+
+        songs.add(song92);
+
+
+//        Song song = new Song();
+//        song.setArtistName("আইয়ুব বাচ্চু");
+//        song.setSongName("ফেরারী এই মনটা আমার");
+//        song.setLyrics("");
+//
+//        songs.add(song);
+//
+//        Song song = new Song();
+//        song.setArtistName("আইয়ুব বাচ্চু");
+//        song.setSongName("ফেরারী এই মনটা আমার");
+//        song.setLyrics("");
+//
+//        songs.add(song);
+//
+//        Song song = new Song();
+//        song.setArtistName("আইয়ুব বাচ্চু");
+//        song.setSongName("ফেরারী এই মনটা আমার");
+//        song.setLyrics("");
+//
+//        songs.add(song);
 
 
 
@@ -3149,5 +3199,17 @@ public class MainActivity extends AppCompatActivity {
     public void initializeSongsFromDB()
     {
         this.songs = Paper.book().read("songs");
+//        int id = 1;
+//        for(Song song:this.songs)
+//        {
+//            song.setId(id);
+//            id++;
+//        }
+
+        //Paper.book().delete("songs");
+
+        // save
+        //Paper.book().write("songs", songs);
+
     }
 }

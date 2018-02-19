@@ -46,6 +46,7 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongViewHold
         holder.songNameTextView.setText(item.getSongName());
         holder.artistNameTextView.setText(item.getArtistName());
         holder.lyricsTextView.setText(item.getLyrics());
+        holder.songId.setText(item.getId()+"");
     }
 
     @Override
@@ -62,7 +63,7 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongViewHold
 
         View view;
         RelativeLayout songRelativeLayout;
-        TextView songNameTextView, artistNameTextView,lyricsTextView;
+        TextView songNameTextView, artistNameTextView,lyricsTextView, songId;
 
         public SongViewHolder(View itemView) {
             super(itemView);
@@ -71,6 +72,7 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongViewHold
             this.songNameTextView = (TextView) itemView.findViewById(R.id.songNameTextView);
             this.artistNameTextView = (TextView) itemView.findViewById(R.id.artistNameTextView);
             this.lyricsTextView = (TextView) itemView.findViewById(R.id.lyricsTextView);
+            this.songId = (TextView) itemView.findViewById(R.id.songId);
 
             this.view.setOnClickListener(new View.OnClickListener() {
                 @Override
