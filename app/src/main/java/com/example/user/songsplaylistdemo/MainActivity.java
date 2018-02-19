@@ -4,6 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 
 import com.google.gson.Gson;
 
@@ -18,22 +21,48 @@ public class MainActivity extends AppCompatActivity {
     private JSONArray songsJsonArray;
     private ArrayList<Song> songs;
     RecyclerView recyclerView;
+    EditText searchSongEditText;
+    SongsAdapter songsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         this.loadDataToDB();
         this.initializeSongsFromDB();
 
 
         this.recyclerView = (RecyclerView) this.findViewById(R.id.recyclerView);
-        SongsAdapter songsAdapter = new SongsAdapter(this,songs);
+        this.songsAdapter = new SongsAdapter(this,songs);
         recyclerView.setAdapter(songsAdapter);
         this.recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         this.recyclerView.setLayoutManager(linearLayoutManager);
+
+
+
+        this.searchSongEditText = (EditText) this.findViewById(R.id.searchSongEditText);
+        this.searchSongEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                songsAdapter.getFilter().filter(s.toString());
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
 
 
     }
@@ -217,27 +246,27 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Song song6 = new Song();
-        song6.setArtistName("লালন");
-        song6.setSongName("জাত গেলো");
-        song6.setLyrics("জাত গেল জাত গেল বলে\n" +
-                "একি আজব কারখানা\n" +
-                "সত্য কাজে কেউ নয় রাজি\n" +
-                "সবি দেখি তা না-না-না।।\n" +
-                "আসবার কালে কি জাত ছিলে\n" +
-                "এসে তুমি কি জাত নিলে,\n" +
-                "কি জাত হবা যাবার কালে\n" +
-                "সে কথা ভেবে বল না।।\n" +
-                "ব্রাহ্মণ চন্ডাল চামার মুচি\n" +
-                "এক জলেই সব হয় গো শুচি,\n" +
-                "দেখে শুনে হয় না রুচি\n" +
-                "যমে তো কাকেও ছাড়বে না।।\n" +
-                "গোপনে যে বেশ্যার ভাত খায়,\n" +
-                "তাতে ধর্মের কি ক্ষতি হয়।\n" +
-                "লালন বলে জাত কারে কয়\n" +
-                "এ ভ্রম তো গেল না।।");
-
-        songs.add(song6);
+//        Song song6 = new Song();
+//        song6.setArtistName("লালন");
+//        song6.setSongName("জাত গেলো");
+//        song6.setLyrics("জাত গেল জাত গেল বলে\n" +
+//                "একি আজব কারখানা\n" +
+//                "সত্য কাজে কেউ নয় রাজি\n" +
+//                "সবি দেখি তা না-না-না।।\n" +
+//                "আসবার কালে কি জাত ছিলে\n" +
+//                "এসে তুমি কি জাত নিলে,\n" +
+//                "কি জাত হবা যাবার কালে\n" +
+//                "সে কথা ভেবে বল না।।\n" +
+//                "ব্রাহ্মণ চন্ডাল চামার মুচি\n" +
+//                "এক জলেই সব হয় গো শুচি,\n" +
+//                "দেখে শুনে হয় না রুচি\n" +
+//                "যমে তো কাকেও ছাড়বে না।।\n" +
+//                "গোপনে যে বেশ্যার ভাত খায়,\n" +
+//                "তাতে ধর্মের কি ক্ষতি হয়।\n" +
+//                "লালন বলে জাত কারে কয়\n" +
+//                "এ ভ্রম তো গেল না।।");
+//
+//        songs.add(song6);
         Song song7 = new Song();
         song7.setArtistName("কুড়েঘর");
         song7.setSongName("আমার হৃদয় পিঞ্জিরার পোষা পাখি");
