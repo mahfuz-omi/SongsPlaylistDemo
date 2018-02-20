@@ -9,6 +9,7 @@
     card_view:cardCornerRadius="4dp">
 
     <LinearLayout
+        android:id="@+id/rootLinearLayout"
         android:background="#b3e0ff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,18 +46,27 @@
         </RelativeLayout>
 
         <LinearLayout
+            android:id="@+id/songExpandableLinearLayout"
+            android:visibility="gone"
             android:background="#ffcce6"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <include
+                layout="@layout/color_palette"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
             <TextView
+                android:padding="5dp"
+                android:background="#ffffff"
                 android:id="@+id/lyricsTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:gravity="center"
                 android:text="this is omis lyrics"
-                android:visibility="gone" />
+                />
         </LinearLayout>
 
 

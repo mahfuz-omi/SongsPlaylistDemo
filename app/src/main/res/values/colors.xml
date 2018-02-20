@@ -5,4 +5,11 @@
     <color name="colorAccent">#b3c6ff</color>
     <color name="textColorPrimary">#ffffff</color>
     <color name="windowBackground">#e6ecff</color>
+
+    <color name="colorRed">#dd220d</color>
+    <color name="colorGreen">#2eaf0a</color>
+    <color name="colorYellow">#bec419</color>
+
+
+
 </resources>

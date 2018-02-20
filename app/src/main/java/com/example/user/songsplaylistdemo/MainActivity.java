@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.ic_launcher);
 
-
-        //this.loadDataToDB();
         boolean isFirstTimeLaunch = Paper.book().read("isFirstTimeLaunch",true);
         if(isFirstTimeLaunch)
         {
@@ -3181,6 +3179,8 @@ public class MainActivity extends AppCompatActivity {
         for(Song song:songs)
         {
             song.setId(id);
+            song.setExpanded(false);
+            song.setColor(Song.colorDefault);
             id++;
         }
 
@@ -3217,16 +3217,17 @@ public class MainActivity extends AppCompatActivity {
     public void initializeSongsFromDB()
     {
         this.songs = Paper.book().read("songs");
-        int id = 1;
-        for(Song song:this.songs)
-        {
-            song.setId(id);
-            id++;
-        }
-
-        //Paper.book().delete("songs");
-
-        // save
+        //int id = 1;
+//        for(Song song:this.songs)
+//        {
+//            //song.setId(id);
+//            song.setExpanded(false);
+//            //id++;
+//        }
+//
+//        Paper.book().delete("songs");
+//
+//        // save
         //Paper.book().write("songs", songs);
 
     }
