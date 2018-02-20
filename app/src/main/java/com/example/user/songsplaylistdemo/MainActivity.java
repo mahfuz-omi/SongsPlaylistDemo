@@ -30,8 +30,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
+
 
         //this.loadDataToDB();
+        boolean isFirstTimeLaunch = Paper.book().read("isFirstTimeLaunch",true);
+        if(isFirstTimeLaunch)
+        {
+            // this app is being launched for the first time
+            // load data to DB
+            this.loadDataToDB();
+            Paper.book().write("isFirstTimeLaunch",false);
+        }
         this.initializeSongsFromDB();
 
 
@@ -410,7 +421,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         Song song11 = new Song();
-        song11.setArtistName("অঞ্জন দত্");
+        song11.setArtistName("অঞ্জন দত্ত");
         song11.setSongName("চাকরিটা আমি পেয়ে গেছি");
         song11.setLyrics("চাকরিটা আমি পেয়ে গেছি বেলা শুনছো\n" +
                 "এখন আর কেউ আটকাতে পারবেনা\n" +
@@ -3166,6 +3177,13 @@ public class MainActivity extends AppCompatActivity {
 
         songs.add(song92);
 
+        int id = 1;
+        for(Song song:songs)
+        {
+            song.setId(id);
+            id++;
+        }
+
 
 //        Song song = new Song();
 //        song.setArtistName("আইয়ুব বাচ্চু");
@@ -3199,12 +3217,12 @@ public class MainActivity extends AppCompatActivity {
     public void initializeSongsFromDB()
     {
         this.songs = Paper.book().read("songs");
-//        int id = 1;
-//        for(Song song:this.songs)
-//        {
-//            song.setId(id);
-//            id++;
-//        }
+        int id = 1;
+        for(Song song:this.songs)
+        {
+            song.setId(id);
+            id++;
+        }
 
         //Paper.book().delete("songs");
 
