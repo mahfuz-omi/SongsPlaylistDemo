@@ -1,20 +1,25 @@
 package com.example.user.songsplaylistdemo;
 
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareButton;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import io.paperdb.Paper;
 
@@ -25,13 +30,27 @@ public class MainActivity extends AppCompatActivity {
     EditText searchSongEditText;
     SongsAdapter songsAdapter;
 
+    Toolbar toolbar;
+    ShareButton shareButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
+        this.toolbar = (Toolbar) this.findViewById(R.id.my_toolbar);
+        this.setSupportActionBar(toolbar);
+
+        this.shareButton = (ShareButton) this.toolbar.findViewById(R.id.facebookShareButton);
+        ShareLinkContent content = new ShareLinkContent.Builder()
+                .setContentUrl(Uri.parse("https://play.google.com/store/apps/details?id=com.omi.piniksong"))
+                .build();
+        shareButton.setShareContent(content);
+
+
+
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //getSupportActionBar().setIcon(R.mipmap.ic_launcher);
 
         boolean isFirstTimeLaunch = Paper.book().read("isFirstTimeLaunch",true);
         if(isFirstTimeLaunch)
@@ -3181,6 +3200,7 @@ public class MainActivity extends AppCompatActivity {
             song.setId(id);
             song.setExpanded(false);
             song.setColor(Song.colorDefault);
+            song.setExpansionCount(0);
             id++;
         }
 
@@ -3217,6 +3237,7 @@ public class MainActivity extends AppCompatActivity {
     public void initializeSongsFromDB()
     {
         this.songs = Paper.book().read("songs");
+        //Collections.sort(this.songs);
         //int id = 1;
 //        for(Song song:this.songs)
 //        {

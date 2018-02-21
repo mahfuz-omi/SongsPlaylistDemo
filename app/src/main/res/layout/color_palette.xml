@@ -21,7 +21,7 @@
 
         <Button
             android:layout_margin="5dp"
-            android:layout_weight="0.25"
+            android:layout_weight="0.2"
             android:id="@+id/buttonRed"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
 
         <Button
             android:layout_margin="5dp"
-            android:layout_weight="0.25"
+            android:layout_weight="0.2"
             android:id="@+id/buttonGreen"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
 
         <Button
             android:layout_margin="5dp"
-            android:layout_weight="0.25"
+            android:layout_weight="0.2"
             android:id="@+id/buttonDefault"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -45,11 +45,19 @@
 
         <Button
             android:layout_margin="5dp"
-            android:layout_weight="0.25"
+            android:layout_weight="0.2"
             android:id="@+id/buttonYellow"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@color/colorYellow" />
+
+        <Button
+            android:layout_margin="5dp"
+            android:layout_weight="0.2"
+            android:id="@+id/buttonPaste"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPaste" />
     </LinearLayout>
 
 

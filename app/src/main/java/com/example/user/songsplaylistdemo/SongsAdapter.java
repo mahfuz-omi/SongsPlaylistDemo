@@ -78,7 +78,7 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongViewHold
         LinearLayout songExpandableLinearLayout, rootLinearLayout;
         TextView songNameTextView, artistNameTextView,lyricsTextView, songId;
 
-        Button buttonGreen, buttonRed, buttonDefault, buttonYellow;
+        Button buttonGreen, buttonRed, buttonDefault, buttonYellow, buttonPaste;
 
         public SongViewHolder(View itemView) {
             super(itemView);
@@ -95,6 +95,7 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongViewHold
             this.buttonRed = (Button) itemView.findViewById(R.id.buttonRed);
             this.buttonGreen = (Button) itemView.findViewById(R.id.buttonGreen);
             this.buttonYellow = (Button) itemView.findViewById(R.id.buttonYellow);
+            this.buttonPaste = (Button) itemView.findViewById(R.id.buttonPaste);
 
 
 
@@ -158,7 +159,50 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongViewHold
                 }
             });
 
+
+            this.buttonPaste.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // color yellow
+                    rootLinearLayout.setBackgroundColor(context.getResources().getColor(R.color.colorPaste));
+                    suggestedSongs.get(getAdapterPosition()).setColor(Song.colorPaste);
+
+                    // save into DB
+                    allSongs.get(suggestedSongs.get(getAdapterPosition()).getId()-1).setColor(Song.colorPaste);
+                    Paper.book().write("songs",allSongs);
+
+
+                }
+            });
+
+
             this.songRelativeLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(songExpandableLinearLayout.getVisibility() == View.VISIBLE)
+                    {
+                        songExpandableLinearLayout.setVisibility(View.GONE);
+                        // save to DB
+                        allSongs.get(suggestedSongs.get(getAdapterPosition()).getId()-1).setExpanded(false);
+                        Paper.book().write("songs",allSongs);
+                    }
+
+                    else
+                    {
+                        // expand
+                        songExpandableLinearLayout.setVisibility(View.VISIBLE);
+
+
+                        // save to DB
+                        allSongs.get(suggestedSongs.get(getAdapterPosition()).getId()-1).setExpansionCount(allSongs.get(suggestedSongs.get(getAdapterPosition()).getId()-1).getExpansionCount()+1);
+                        allSongs.get(suggestedSongs.get(getAdapterPosition()).getId()-1).setExpanded(true);
+                        Paper.book().write("songs",allSongs);
+                    }
+
+                }
+            });
+
+            this.lyricsTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(songExpandableLinearLayout.getVisibility() == View.VISIBLE)

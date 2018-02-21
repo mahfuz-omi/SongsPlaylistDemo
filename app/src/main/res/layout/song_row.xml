@@ -48,7 +48,7 @@
         <LinearLayout
             android:id="@+id/songExpandableLinearLayout"
             android:visibility="gone"
-            android:background="#ffcce6"
+            android:background="#e6fffa"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
