@@ -58,8 +58,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:padding="5dp"
-                android:background="#ffffff"
+                android:padding="10dp"
+                android:background="@drawable/lyrics_background"
                 android:id="@+id/lyricsTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
