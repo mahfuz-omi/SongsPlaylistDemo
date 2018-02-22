@@ -11,7 +11,6 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,19 +19,22 @@ import java.util.List;
 
 import io.paperdb.Paper;
 
+import static com.example.user.songsplaylistdemo.SongsAdapter.changeColorById;
+import static com.example.user.songsplaylistdemo.SongsAdapter.changeExpansionById;
+import static com.example.user.songsplaylistdemo.SongsAdapter.removeSongById;
+
 /**
- * Created by USER on 2/18/2018.
+ * Created by USER on 2/21/2018.
  */
 
-
-public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongViewHolder> implements Filterable{
+public class FavouriteSongsAdapter extends RecyclerView.Adapter<FavouriteSongsAdapter.SongViewHolder> implements Filterable {
 
     Context context;
     List<Song> allSongs;
     List<Song> suggestedSongs;
     LayoutInflater layoutInflater;
 
-    public SongsAdapter(Context context, ArrayList<Song> songs) {
+    public FavouriteSongsAdapter(Context context, ArrayList<Song> songs) {
         super();
         this.context = context;
         this.allSongs = songs;
@@ -61,6 +63,7 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongViewHold
             holder.songExpandableLinearLayout.setVisibility(View.VISIBLE);
         else
             holder.songExpandableLinearLayout.setVisibility(View.GONE);
+        holder.deleteFromFavouriteImageView.setImageResource(R.mipmap.ic_delete);
     }
 
     @Override
@@ -81,7 +84,8 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongViewHold
         TextView songNameTextView, artistNameTextView,lyricsTextView, songId;
 
         Button buttonGreen, buttonRed, buttonDefault, buttonYellow, buttonPaste;
-        ImageView addToFavouriteImageView;
+
+        ImageView deleteFromFavouriteImageView;
 
         public SongViewHolder(View itemView) {
             super(itemView);
@@ -99,29 +103,46 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongViewHold
             this.buttonGreen = (Button) itemView.findViewById(R.id.buttonGreen);
             this.buttonYellow = (Button) itemView.findViewById(R.id.buttonYellow);
             this.buttonPaste = (Button) itemView.findViewById(R.id.buttonPaste);
-            this.addToFavouriteImageView = (ImageView) itemView.findViewById(R.id.addToFavouriteImageView);
+            this.deleteFromFavouriteImageView = (ImageView) itemView.findViewById(R.id.addToFavouriteImageView);
 
-            this.addToFavouriteImageView.setOnClickListener(new View.OnClickListener() {
+            this.deleteFromFavouriteImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+
+//                    // delete from DB
+//                    allSongs.remove(suggestedSongs.get(getAdapterPosition()).getId()-1);
+//                    Paper.book().write("favourite_songs",allSongs);
+//
+//                    // save as normal songs in DB
+//                    List<Song> allSongs = Paper.book().read("songs",new ArrayList<Song>());
+//                    allSongs.add(allSongs.get(getAdapterPosition()));
+//                    Paper.book().write("songs",allSongs);
+//
+//                    // delete this song view
+//                    suggestedSongs.remove(getAdapterPosition());
+//                    notifyItemRemoved(getAdapterPosition());
+//
+//                    Toast.makeText(context, "Song deleted from Favourite", Toast.LENGTH_SHORT).show();
+
 
                     Song song = suggestedSongs.get(getAdapterPosition());
 
                     // delete from DB
-                    removeSongById(allSongs,song.getId(),"songs");
+                    removeSongById(allSongs,song.getId(),"favourite_songs");
                     //Paper.book().write("songs",allSongs);
 
 
-                    // save as favourite songs in DB
-                    List<Song> favouriteSongs = Paper.book().read("favourite_songs",new ArrayList<Song>());
-                    favouriteSongs.add(song);
-                    Paper.book().write("favourite_songs",favouriteSongs);
+                    // save as regular/normal songs in DB
+                    List<Song> songs = Paper.book().read("songs",new ArrayList<Song>());
+                    songs.add(song);
+                    Paper.book().write("songs",songs);
 
                     // delete this song view
                     suggestedSongs.remove(getAdapterPosition());
                     notifyItemRemoved(getAdapterPosition());
 
-                    Toast.makeText(context, "Song added to Favourite", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Song deleted from Favourite", Toast.LENGTH_SHORT).show();
 
 
                 }
@@ -140,7 +161,7 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongViewHold
                     song.setColor(Song.colorYellow);
 
                     // save into DB
-                    changeColorById(allSongs,song.getId(),Song.colorYellow,"songs");
+                    changeColorById(allSongs,song.getId(),Song.colorYellow,"favourite_songs");
                 }
             });
 
@@ -154,7 +175,7 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongViewHold
                     song.setColor(Song.colorRed);
 
                     // save into DB
-                    changeColorById(allSongs,song.getId(),Song.colorRed,"songs");
+                    changeColorById(allSongs,song.getId(),Song.colorRed,"favourite_songs");
 
 
                 }
@@ -170,7 +191,7 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongViewHold
                     song.setColor(Song.colorGreen);
 
                     // save into DB
-                    changeColorById(allSongs,song.getId(),Song.colorGreen,"songs");
+                    changeColorById(allSongs,song.getId(),Song.colorGreen,"favourite_songs");
 
 
                 }
@@ -186,7 +207,7 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongViewHold
                     song.setColor(Song.colorDefault);
 
                     // save into DB
-                    changeColorById(allSongs,song.getId(),Song.colorDefault,"songs");
+                    changeColorById(allSongs,song.getId(),Song.colorDefault,"favourite_songs");
 
 
                 }
@@ -203,7 +224,7 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongViewHold
                     song.setColor(Song.colorPaste);
 
                     // save into DB
-                    changeColorById(allSongs,song.getId(),Song.colorPaste,"songs");
+                    changeColorById(allSongs,song.getId(),Song.colorPaste,"favourite_songs");
 
 
                 }
@@ -218,7 +239,7 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongViewHold
                         Song song = suggestedSongs.get(getAdapterPosition());
                         songExpandableLinearLayout.setVisibility(View.GONE);
                         // save to DB
-                        changeExpansionById(allSongs,song.getId(),false,"songs");
+                        changeExpansionById(allSongs,song.getId(),false,"favourite_songs");
                     }
 
                     else
@@ -226,7 +247,7 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongViewHold
                         Song song = suggestedSongs.get(getAdapterPosition());
                         songExpandableLinearLayout.setVisibility(View.VISIBLE);
                         // save to DB
-                        changeExpansionById(allSongs,song.getId(),true,"songs");
+                        changeExpansionById(allSongs,song.getId(),true,"favourite_songs");
                     }
 
                 }
@@ -240,7 +261,7 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongViewHold
                         Song song = suggestedSongs.get(getAdapterPosition());
                         songExpandableLinearLayout.setVisibility(View.GONE);
                         // save to DB
-                        changeExpansionById(allSongs,song.getId(),false,"songs");
+                        changeExpansionById(allSongs,song.getId(),false,"favourite_songs");
                     }
 
                     else
@@ -248,7 +269,7 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongViewHold
                         Song song = suggestedSongs.get(getAdapterPosition());
                         songExpandableLinearLayout.setVisibility(View.VISIBLE);
                         // save to DB
-                        changeExpansionById(allSongs,song.getId(),true,"songs");
+                        changeExpansionById(allSongs,song.getId(),true,"favourite_songs");
                     }
 
                 }
@@ -312,40 +333,7 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.SongViewHold
         return resources.getColor(R.color.colorPrimary);
     }
 
-    public static void removeSongById(List<Song> songs,int id,String key)
-    {
-        Song itemToBeRemoved = null;
-        for(Song song:songs)
-        {
-            if(song.getId() == id)
-                itemToBeRemoved = song;
-        }
-        songs.remove(itemToBeRemoved);
-        Paper.book().write(key,songs);
-    }
-
-    public static void changeColorById(List<Song> songs,int id,String color,String key)
-    {
-        for(Song song:songs)
-        {
-            if(song.getId() == id)
-            {
-                song.setColor(color);
-            }
-        }
-        Paper.book().write(key,songs);
-    }
-
-    public static void changeExpansionById(List<Song> songs,int id,boolean isExpanded,String key)
-    {
-        for(Song song:songs)
-        {
-            if(song.getId() == id)
-            {
-                song.setExpanded(isExpanded);
-            }
-        }
-        Paper.book().write(key,songs);
-    }
 
 }
+
+

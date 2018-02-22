@@ -5,23 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.user.songsplaylistdemo.MainActivity">
+    tools:context="com.example.user.songsplaylistdemo.FavouriteSongsActivity">
 
     <include
         layout="@layout/toolbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"/>
-
-    <Button
-        android:paddingLeft="10dp"
-        android:textAllCaps="false"
-        android:background="@color/colorPink"
-        android:id="@+id/myFavouriteButton"
-        android:layout_margin="10dp"
-        android:text="My Favourites"
-        android:drawableLeft="@mipmap/ic_favourite"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <EditText
         android:layout_margin="10dp"

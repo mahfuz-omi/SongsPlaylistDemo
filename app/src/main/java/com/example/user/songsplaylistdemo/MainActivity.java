@@ -1,5 +1,6 @@
 package com.example.user.songsplaylistdemo;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.facebook.share.model.ShareLinkContent;
@@ -23,31 +26,30 @@ import java.util.Collections;
 
 import io.paperdb.Paper;
 
-public class MainActivity extends AppCompatActivity {
-    private JSONArray songsJsonArray;
+public class MainActivity extends BaseActivity {
     private ArrayList<Song> songs;
     RecyclerView recyclerView;
     EditText searchSongEditText;
     SongsAdapter songsAdapter;
 
-    Toolbar toolbar;
-    ShareButton shareButton;
+    Button myFavouriteButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.toolbar = (Toolbar) this.findViewById(R.id.my_toolbar);
-        this.setSupportActionBar(toolbar);
-
-        this.shareButton = (ShareButton) this.toolbar.findViewById(R.id.facebookShareButton);
-        ShareLinkContent content = new ShareLinkContent.Builder()
-                .setContentUrl(Uri.parse("https://play.google.com/store/apps/details?id=com.omi.piniksong"))
-                .build();
-        shareButton.setShareContent(content);
 
 
+        this.myFavouriteButton = (Button) this.findViewById(R.id.myFavouriteButton);
+        this.myFavouriteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,FavouriteSongsActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //getSupportActionBar().setDisplayShowHomeEnabled(true);
         //getSupportActionBar().setIcon(R.mipmap.ic_launcher);
@@ -60,15 +62,11 @@ public class MainActivity extends AppCompatActivity {
             this.loadDataToDB();
             Paper.book().write("isFirstTimeLaunch",false);
         }
-        this.initializeSongsFromDB();
+        //this.initializeSongsFromDB();
 
 
         this.recyclerView = (RecyclerView) this.findViewById(R.id.recyclerView);
-        this.songsAdapter = new SongsAdapter(this,songs);
-        recyclerView.setAdapter(songsAdapter);
-        this.recyclerView.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-        this.recyclerView.setLayoutManager(linearLayoutManager);
+
         //GridLayoutManager gridVertical = new GridLayoutManager(this,2, GridLayoutManager.VERTICAL,false);
 
         //recyclerView.setLayoutManager(gridVertical);
@@ -3237,6 +3235,7 @@ public class MainActivity extends AppCompatActivity {
     public void initializeSongsFromDB()
     {
         this.songs = Paper.book().read("songs");
+        Collections.sort(this.songs);
         //Collections.sort(this.songs);
         //int id = 1;
 //        for(Song song:this.songs)
@@ -3251,5 +3250,16 @@ public class MainActivity extends AppCompatActivity {
 //        // save
         //Paper.book().write("songs", songs);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        this.initializeSongsFromDB();
+        this.songsAdapter = new SongsAdapter(this,songs);
+        recyclerView.setAdapter(songsAdapter);
+        this.recyclerView.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        this.recyclerView.setLayoutManager(linearLayoutManager);
     }
 }

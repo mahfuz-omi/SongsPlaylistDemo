@@ -15,35 +15,50 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/songRelativeLayout"
+        <LinearLayout
+            android:id="@+id/songLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:layout_margin="10dp">
 
             <TextView
+                android:gravity="center"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.15"
                 android:id="@+id/songId"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
                 android:text="songId" />
 
             <TextView
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:layout_weight="0.45"
                 android:textStyle="bold"
-                android:layout_marginLeft="20dp"
-                android:layout_toRightOf="@id/songId"
                 android:id="@+id/songNameTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="songName" />
 
             <TextView
+                android:gravity="center"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.25"
                 android:id="@+id/artistNameTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:text="artistName" />
-        </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/addToFavouriteImageView"
+                android:gravity="center"
+                android:layout_gravity="center_vertical"
+                android:src="@mipmap/ic_favourite"
+                android:layout_weight="0.15"
+                android:layout_width="0dp"
+                android:layout_height="24dp" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/songExpandableLinearLayout"

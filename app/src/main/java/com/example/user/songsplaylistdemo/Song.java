@@ -95,6 +95,6 @@ public class Song implements Comparable<Song>{
 
     @Override
     public int compareTo(@NonNull Song o) {
-        return o.getExpansionCount()-this.getExpansionCount();
+        return this.getId()-o.getId();
     }
 }
