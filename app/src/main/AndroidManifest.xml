@@ -32,7 +32,8 @@
             android:value="@string/facebook_app_id" />
 
         <activity android:name=".FavouriteSongsActivity"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden"
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".BaseActivity"></activity>
     </application>
 

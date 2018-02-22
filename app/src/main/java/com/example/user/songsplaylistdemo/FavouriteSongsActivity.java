@@ -26,6 +26,8 @@ public class FavouriteSongsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favourite_songs);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         this.initializeSongsFromDB();
 
         this.recyclerView = (RecyclerView) this.findViewById(R.id.recyclerView);
